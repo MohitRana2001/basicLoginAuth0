@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+  </head>
+  <body>
+    <h1>Welcome to your profile, <%= user.name %>!</h1>
+    <p>Here is some information about you:</p>
+    <ul>
+      <li>Name: <%= user.name %></li>
+      <li>Email: <%= user.email %></li>
+      <li>Profile picture:</li>
+      <li><img src="<%= user.picture %>" alt="<%= user.name %>"></li>
+    </ul>
+    <a href="/">Go back to the home page</a>
+    <a href="/logout">Logout</a>
+  </body>
+</html>
