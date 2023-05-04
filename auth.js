@@ -13,37 +13,38 @@ router.get('/login', (req, res) => {
   res.oidc.login({ returnTo: '/profile' });
 });
 
-router.get('/register', requiresAuth(), (req, res) => {
-  res.render('register');
-});
 
-router.post('/register', async (req, res) => {
-    const { name, email, password } = req.body;
-  
-    if (!name || !email || !password) {
-      return res.status(400).send('Please provide all fields');
-    }
-  
-    const existingUser = await User.findOne({ email });
-  
-    if (existingUser) {
-      return
-    }
-    const hashedPassword = await bcrypt.hash(password, 10);
+// router.get('/register', (req, res) => {
+//   res.render('register');
+// });
 
-      const user = new User({
-      name,
-      email,
-      password: hashedPassword,
-      });
+// router.post('/register', async (req, res) => {
+//     const { name, email, password } = req.body;
+  
+//     if (!name || !email || !password) {
+//       return res.status(400).send('Please provide all fields');
+//     }
+  
+//     const existingUser = User.findOne({email});
+//     console.log(existingUser.email);
+//     if (existingUser.email !== undefined) {
+//       return res.status(400).send('Email already registered');
+//     }
+//     const hashedPassword = await bcrypt.hash(password, 10);
+
+//       const user = new User({
+//       name,
+//       email,
+//       password: hashedPassword,
+//       });
       
-      try {
-      await user.save();
-      res.redirect('/login');
-      } catch (err) {
-      console.error(err);
-      res.status(500).send('Something went wrong');
-      }
-      });
+//       try {
+//       await user.save();
+//       res.redirect('/profile');
+//       } catch (err) {
+//       console.error(err);
+//       res.status(500).send('Something went wrong');
+//       }
+//       });
 
 module.exports = router;
