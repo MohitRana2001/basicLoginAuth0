@@ -10,7 +10,4 @@ const db = mongoose.connect(process.env.MONGO_URI , {
     console.log("Error",err);
 });
 
-// db.on('error', (error) => console.error(error));
-// db.once('open', () => console.log('Connected to database'));
-
 module.exports = mongoose.connection;
